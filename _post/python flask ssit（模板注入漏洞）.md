@@ -1,4 +1,16 @@
-﻿
+﻿---
+layout:     post
+title:      flask-ssti
+subtitle:   模板注入
+date:       2020-04-15
+author:     BY Diego
+header-img: img/post-bg-ios9-web.jpg
+catalog: true
+tags:
+    - python
+    - SSTI
+---
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200217115605356.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU3MTAyOA==,size_16,color_FFFFFF,t_70)
 
 
