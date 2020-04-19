@@ -12,9 +12,9 @@ tags:
 ---
 
 
-## 原型 与 原型链
+# 一、原型 与 原型链
 
-### 类的构造函数
+## 类的构造函数
 
 先说一下类的构造函数,'面向对象编程'的第一步，就是要生成对象。而js中面向对象编程是基于构造函数（constructor）和原型链（prototype）的。
 
@@ -44,7 +44,7 @@ function Test() {
 
 new 命令的实现过程
 
-```javascript
+```
 let a = new Test()
 
 1.创建一个空对象，作为将要返回的对象实例。
@@ -56,7 +56,7 @@ let a = new Test()
 4.开始执行构造函数内部的代码。
 ```
 
-### 原型
+## 原型
 
 简单了解完这些就开始 说一下原型 这里涉及 prototype  和 \_\_proto__ 两个概念
 
@@ -125,12 +125,12 @@ persion.show()
 这就印证了上面最开始说的 **使用该构建函数实例化对象时，会继承该原型中的属性及方法。**
 
 总的来说
-```javascript
+```
 1.prototype是一个类的属性，所有类对象在实例化的时候将会拥有prototype中的属性和方法
 2.一个对象的__proto__属性，指向这个对象所在的类的prototype属性
 ```
 
-### 原型链
+## 原型链
 
 所谓原型链也是指JS中的一个继承和反向查找的机制，函数对象可以通过prototype属性找到函数原型，普通实例对象可以通过__proto__属性找到构建其函数的原型。说白了就是寻找原型的一条链
 
@@ -149,14 +149,14 @@ persion对象的 \_\_proto__ 为Persion.prototype ,而Persion.prototype 的\_\_p
 这里再放一张合天的一张图片，加深一下理解
 ![JuHJNF.jpg](https://s1.ax1x.com/2020/04/19/JuHJNF.jpg)
 
-```javascript
+```
 1.在对象persion中寻找show()方法
 2.如果找不到，则在persion.__proto__中寻找show()
 3.如果仍然找不到，则继续在persion.__proto__.__proto__中寻找show()
 4.依次寻找，直到找到null结束。比如，Object.prototype的__proto__就是null
 ```
 
-## 原型链污染
+# 二、原型链污染
 
 原型链污染主要是因为攻击者可以设置__proto__的值，导致污染，一个应用中，如果攻击者控制并修改了一个对象的原型，那么将可以影响所有和这个对象来自同一个类、父祖类的对象。这种攻击方式就是原型链污染。。用户能控制其键名的操作，就容易出现污染攻击，如
 
@@ -218,9 +218,14 @@ console.log(a)
 
 ![JuvfJK.png](https://s1.ax1x.com/2020/04/19/JuvfJK.png)
 
+# 三、利用
+
 **JSON.parse** 是不是会限制攻击的利用条件？
 答案是不会的 因为很多数据传输都是用json来传输的，JSON.parse常用来解析用户传来的信息
+去除  JSON.parse('{"a": 1, "__proto__": {"b": 2}}')
+这中利用方式，还有什么利用方式
 
+## 构造方法
 危害当然不仅改变属性这么简单,甚至可以改变方法
 ```javascript
 let person = {name: 'lucas'}
@@ -232,9 +237,64 @@ console.log(person2.toString())
 
 [![JKlRu4.png](https://s1.ax1x.com/2020/04/19/JKlRu4.png)](https://imgchr.com/i/JKlRu4)
 
-## 实例
+## 污染 + lodash.template
 
-### Code-Breaking 2018 Thejs 分析
+在能污染的前提下，如果遇到lodash.template我们相当于可以给Object对象插入任意属性，这个插入的属性反应在最后的lodash.template中
+```javascript
+// Use a sourceURL for easier debugging.
+var sourceURL = 'sourceURL' in options ? '//# sourceURL=' + options.sourceURL + '\n' : '';
+// ...
+var result = attempt(function() {
+  return Function(importsKeys, sourceURL + 'return ' + source)
+  .apply(undefined, importsValues);
+});
+```
+options是一个对象，sourceURL取到了其options.sourceURL属性。这个属性原本是没有赋值的，默认取空字符串。
+
+但因为原型链污染，我们可以给所有Object对象中都插入一个sourceURL属性。最后，这个sourceURL被拼接进new Function的第二个参数中，造成任意代码执行漏洞。
+
+## Express + lodash + ejs
+
+简单样例
+```javascript
+const express = require('express');
+const bodyParser = require('body-parser');
+const lodash = require('lodash');
+const ejs = require('ejs');
+
+const app = express();
+
+app
+    .use(bodyParser.urlencoded({extended: true}))
+    .use(bodyParser.json());
+
+app.set('views', './');
+app.set('view engine', 'ejs');
+
+app.get("/", (req, res) => {
+    res.render('index');
+});
+
+app.post("/", (req, res) => {
+    let data = {};
+    let input = JSON.parse(req.body.content);
+    lodash.defaultsDeep(data, input);
+    res.json({message: "OK"});
+});
+
+let server = app.listen(8086, '0.0.0.0', function() {
+    console.log('Listening on port %d', server.address().port);
+});
+```
+
+调试跟进
+![JKzO6U.png](https://s1.ax1x.com/2020/04/19/JKzO6U.png)
+可以看到， opts 对象 outputFunctionName 成员在 express 配置的时候并没有给他赋值，默认也是未定义，即 undefined，这样在 574 行时，if 判否，跳过
+
+但是在我们有原型链污染的前提之下，我们可以控制基类的成员。这样我们给 Object 类创建一个成员 outputFunctionName，这样可以进入 if 语句，并将我们控制的成员 outputFunctionName 赋值为一串恶意代码，从而造成代码注入。在后面模版渲染的时候，注入的代码被执行，也就是这里存在一个代码注入的 RCE
+# 四、实例
+
+## Code-Breaking 2018 Thejs 分析
 
 [![JKNXNQ.png](https://s1.ax1x.com/2020/04/19/JKNXNQ.png)](https://imgchr.com/i/JKNXNQ)
 将选择的东西 保存在session中的一个功能
@@ -313,7 +373,7 @@ var result = attempt(function() {
 ![JKdZOx.png](https://s1.ax1x.com/2020/04/19/JKdZOx.png)
 
 
-## 参考
+# 五、参考
 
 [JavaScript 中的构造函数](https://juejin.im/entry/584a1c98ac502e006c5d63b8)
 
@@ -324,3 +384,5 @@ var result = attempt(function() {
 [JavaScript Prototype污染攻击](https://zhuanlan.zhihu.com/p/85593346)
 
 [Lodash 严重安全漏洞背后 你不得不知道的 JavaScript 知识](https://blog.fundebug.com/2019/07/20/lodash-security-problem/)
+
+[Express+lodash+ejs: 从原型链污染到RCE](https://evi0s.com/2019/08/30/expresslodashejs-%e4%bb%8e%e5%8e%9f%e5%9e%8b%e9%93%be%e6%b1%a1%e6%9f%93%e5%88%b0rce/)
