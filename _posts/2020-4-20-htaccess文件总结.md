@@ -51,6 +51,7 @@ DirectoryIndex |设置文件夹首页| DirectoryIndex test.php
 Redirect | 设置重定向| Redirect /old/  /new/  |
 
 ### ②RewriteCond语法中字符含义
+
 字符|含义
 -|-
 -d  |  视为一个路径名并测试它是否为一个存在的目录
