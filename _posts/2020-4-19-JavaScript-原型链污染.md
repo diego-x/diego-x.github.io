@@ -14,7 +14,7 @@ tags:
 
 # 一、原型 与 原型链
 
-## 类的构造函数
+  ## 类的构造函数
 
 先说一下类的构造函数,'面向对象编程'的第一步，就是要生成对象。而js中面向对象编程是基于构造函数（constructor）和原型链（prototype）的。
 
@@ -34,7 +34,7 @@ function Test() {
 ```
 
 构造函数特点
-```javascript
+```
 1：构造函数的函数名的第一个字母通常大写。
 
 2：函数体内使用this关键字，代表所要生成的对象实例。
@@ -56,7 +56,7 @@ let a = new Test()
 4.开始执行构造函数内部的代码。
 ```
 
-## 原型
+  ## 原型
 
 简单了解完这些就开始 说一下原型 这里涉及 prototype  和 \_\_proto__ 两个概念
 
@@ -130,7 +130,7 @@ persion.show()
 2.一个对象的__proto__属性，指向这个对象所在的类的prototype属性
 ```
 
-## 原型链
+  ## 原型链
 
 所谓原型链也是指JS中的一个继承和反向查找的机制，函数对象可以通过prototype属性找到函数原型，普通实例对象可以通过__proto__属性找到构建其函数的原型。说白了就是寻找原型的一条链
 
@@ -199,7 +199,7 @@ console.log(a)
 ```
 ![JuOJq1.png](https://s1.ax1x.com/2020/04/19/JuOJq1.png)
 
-这里有一点值得注意，为何o2没有被污染
+这里有一点值得注意，为何下图的o2没有被污染
 
 ![JuXYlQ.png](https://s1.ax1x.com/2020/04/19/JuXYlQ.png)
 用JavaScript创建o2的过程（let o1 = {a: 1, "\_\_proto__": {b: 2}}）中，__proto__已经代表o1的原型了，此时遍历o2的所有键名，你拿到的是[a, b]，__proto__并不是一个key，自然也不会修改Object的原型。
@@ -214,9 +214,11 @@ console.log(a)
 
 ![JuvVrd.png](https://s1.ax1x.com/2020/04/19/JuvVrd.png)
 
-通过下图可以看出 {}的原型被成功污染
+通过下图可以看出 Object的原型被成功污染
 
-![JuvfJK.png](https://s1.ax1x.com/2020/04/19/JuvfJK.png)
+![JMoOuq.png](https://s1.ax1x.com/2020/04/20/JMoOuq.png)
+
+因此所有object都会具有b属性
 
 # 三、利用
 
@@ -225,7 +227,7 @@ console.log(a)
 去除  JSON.parse('{"a": 1, "__proto__": {"b": 2}}')
 这中利用方式，还有什么利用方式
 
-## 构造方法
+  ## 构造方法
 危害当然不仅改变属性这么简单,甚至可以改变方法
 ```javascript
 let person = {name: 'lucas'}
@@ -237,7 +239,7 @@ console.log(person2.toString())
 
 [![JKlRu4.png](https://s1.ax1x.com/2020/04/19/JKlRu4.png)](https://imgchr.com/i/JKlRu4)
 
-## 污染 + lodash.template
+  ## 污染 + lodash.template
 
 在能污染的前提下，如果遇到lodash.template我们相当于可以给Object对象插入任意属性，这个插入的属性反应在最后的lodash.template中
 ```javascript
@@ -253,7 +255,7 @@ options是一个对象，sourceURL取到了其options.sourceURL属性。这个�
 
 但因为原型链污染，我们可以给所有Object对象中都插入一个sourceURL属性。最后，这个sourceURL被拼接进new Function的第二个参数中，造成任意代码执行漏洞。
 
-## Express + lodash + ejs
+  ## Express + lodash + ejs
 
 简单样例
 ```javascript
@@ -294,7 +296,7 @@ let server = app.listen(8086, '0.0.0.0', function() {
 但是在我们有原型链污染的前提之下，我们可以控制基类的成员。这样我们给 Object 类创建一个成员 outputFunctionName，这样可以进入 if 语句，并将我们控制的成员 outputFunctionName 赋值为一串恶意代码，从而造成代码注入。在后面模版渲染的时候，注入的代码被执行，也就是这里存在一个代码注入的 RCE
 # 四、实例
 
-## Code-Breaking 2018 Thejs 分析
+  ## Code-Breaking 2018 Thejs 分析
 
 [![JKNXNQ.png](https://s1.ax1x.com/2020/04/19/JKNXNQ.png)](https://imgchr.com/i/JKNXNQ)
 将选择的东西 保存在session中的一个功能
