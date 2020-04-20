@@ -18,9 +18,13 @@ tags:
 ## 二、工作机制
 Apache在所有上级的目录中查找.htaccess文件，以使所有有效的指令都起作用。所以，如果请求/www/htdocs/example中的页面，Apache必须查找以下文件：
 /.htaccess
+
 /www/.htaccess
+
 /www/htdocs/.htaccess
+
 /www/htdocs/example/.htaccess
+
 总共要访问4个额外的文件，即使这些文件都不存在。
 ## 三、用途
 通过htaccess文件，可以帮我们实现：网页301重定向、自定义404错误页面、改变文件扩展名、允许/阻止特定的用户或者目录的访问、禁止目录列表、配置默认文档、防盗链等功能。
@@ -30,8 +34,11 @@ Apache在所有上级的目录中查找.htaccess文件，以使所有有效的�
 * 缺点：Apache必须在所有上级的目录中查找.htaccess文件，对每一个请求都需要读取一次.htaccess文件,降低服务器性能，其次是安全。这样会允许用户自己修改服务器的配置，这可能会导致某些意想不到的修改。
 
 ## 五、基本语法
+
 这里整理了一下 .htaccess中经常出现的指令即字符含义
+
 ### ①常用指令
+
 指令|功能| 示例
 -|-|-
 AddType | 添加类型 |AddType application/x-httpd-php .php
@@ -41,7 +48,8 @@ RewriteCond |定义了一个规则的条件 | RewriteCond %{HTTP_HOST} ^(www\.)?
 RewriteRule |重写规则|RewriteRule /sss /ttt 将用户的/sss目录请求转到/ttt目录
 ErrorDocument |设置错误页面| ErrorDocument 400 /error_pages/400.html
 DirectoryIndex |设置文件夹首页| DirectoryIndex test.php
-Redirect | 设置重定向| Redirect /old/  /new/
+Redirect | 设置重定向| Redirect /old/  /new/  |
+
 ### ②RewriteCond语法中字符含义
 字符|含义
 -|-
@@ -92,7 +100,7 @@ QUERY_STRING  |a=b&c=d&e=f  |query string（查询字符串），如果有的话
 ## 六、.htaccess 常见用法
 
 ### ①实现网站的重定向
-```
+```php
 RewriteEngine On  #重写引擎开启
 RewriteBase /   #设置重写基准目录为网站根目录 默认为http://www.xxx.com/这种形式
 RewriteCond %{REQUEST_FILENAME} !-f #被请求的资源地址不是文件
@@ -102,7 +110,7 @@ RewriteRule .  /index.php [L]  #满足上述两个条件，就将满足的请求
 ```
 ### ②文件防盗链
 
-```
+```php
 RewriteEngine on
 RewriteCond %{HTTP_REFERER} !^$ # 判断HTTP_REFERER不空
 RewriteCond %{HTTP_REFERER} !^http://(www\.)?yourdomain.com/.*$ [NC] # 判断来源是否来自自己的域
@@ -215,10 +223,17 @@ PHP_INI_ALL    7    配置选项可在各处设置
 ## 八、参考资料
 
 [.htaccess 文件使用手册](https://c7sky.com/htaccess-guide.html)
+
 [.htaccess详解及.htaccess参数说明](https://blog.csdn.net/cmzhuang/article/details/53537591)
+
 [最完的htaccess文件用法收集整理](https://www.jb51.net/article/30445.htm)
+
 [.htaccess rewrite 规则详细说明](https://www.jb51.net/article/82158.htm)
+
 [.htaccess文件说明大全](https://htaccess.iapolo.com/htaccess-daquan.php)
+
 [Apache中.htaccess文件功能](https://www.jb51.net/article/27304.htm)
+
 [htaccess百度百科](https://baike.baidu.com/item/htaccess/1645473?fr=aladdin#2)
+
 [php.ini配置选项可修改范围](http://blog.itpub.net/29753604/viewspace-1340416/)
