@@ -4,7 +4,7 @@ title:      JavaScript-原型链污染
 subtitle:   __proto__ 与 prototype
 date:       2020-04-19
 author:     BY Diego
-header-img: img/post-bg-java原型链.jpg
+header-img: img/wenzhang/post-bg-java原型链.jpg
 catalog: true
 tags:
     - JavaScript
