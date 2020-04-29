@@ -62,8 +62,8 @@ kramdown:
 # Gitalk
 gitalk:
   enable: ture   #是否开启Gitalk评论
-  clientID: 13c033d52c7812342835                            #生成的clientID
-  clientSecret: 7e1fb6600dde6615ad6922ed91d412945692d6f7    #生成的clientSecret
+  clientID: 1d12cede74021d4135ad                            #生成的clientID
+  clientSecret: 89da3e8c9d56a0bf2d5e9d8a22abd0fe314dde1b    #生成的clientSecret
   repo: diego-x.github.io    #仓库名称
   owner: diego-x    #github用户名
   admin: diego-x
