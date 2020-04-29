@@ -57,13 +57,13 @@ kramdown:
 
 # 评论系统
 # Disqus（https://disqus.com/）
-disqus_username: disqus_orpwaNKzb8
+#disqus_username: disqus_orpwaNKzb8
 
 # Gitalk
 gitalk:
   enable: ture   #是否开启Gitalk评论
-  clientID: 13c033d52c7812342835                            #生成的clientID
-  clientSecret: 7e1fb6600dde6615ad6922ed91d412945692d6f7    #生成的clientSecret
+  clientID: 39cbd9b64f7f80fae87e                           #生成的clientID
+  clientSecret: 5e0e4303c73b46e3509d59028e5489f8f7cb2b2f    #生成的clientSecret
   repo: diego-x.github.io    #仓库名称
   owner: diego-x    #github用户名
   admin: diego-x
