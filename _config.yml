@@ -64,7 +64,7 @@ gitalk:
   enable: ture   #是否开启Gitalk评论
   clientID: 39cbd9b64f7f80fae87e                           #生成的clientID
   clientSecret: 5e0e4303c73b46e3509d59028e5489f8f7cb2b2f    #生成的clientSecret
-  repo: diego-x.github.io    #仓库名称
+  repo: gitalk-commnet    #仓库名称
   owner: diego-x    #github用户名
   admin: diego-x
   id: location.pathname
