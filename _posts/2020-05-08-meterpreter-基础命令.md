@@ -7,9 +7,8 @@ author:     BY Diego
 header-img: img/wenzhang/post-bg-Meterpreter.jpg
 catalog: true
 tags:
-    - 数据库
-    - SQL注入
-    - SQL
+    - 工具
+    - 渗透
 ---
 
 # 一、基础
