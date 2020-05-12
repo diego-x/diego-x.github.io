@@ -176,6 +176,9 @@ exploit
 
 **日志清除**
 clearav
+
+
+**待更新**
 # 参考
 
 [Metasploit 使用MSFconsole接口](https://www.fujieace.com/metasploit/msfconsole.html)
