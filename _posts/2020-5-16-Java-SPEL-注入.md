@@ -10,13 +10,13 @@ tags:
     - Java
 ---
 
-# Stringboot 框架
+# 一、 Stringboot 框架
 
 ![](https://bkimg.cdn.bcebos.com/pic/37d12f2eb9389b503a80d4b38b35e5dde6116ed7?x-bce-process=image/watermark,g_7,image_d2F0ZXIvYmFpa2UxNTA=,xp_5,yp_5)
 
 Spring框架是Java平台上的一种开源应用框架，提供具有控制反转特性的容器。
 
-## 目录结构
+## ①目录结构
 ![Y6ESOA.png](https://s1.ax1x.com/2020/05/16/Y6ESOA.png)
 
 主程序入口 /src/main/java/com.\*/\*Application
@@ -36,32 +36,32 @@ SpringBoot项目大概分为四层：
 
 具体可考 https://blog.csdn.net/weixin_39593985/article/details/88851320
 
-## Stringboot中注释器
+## ② Stringboot中注释器
 
-* **\@SpringBootApplication**：包含了@ComponentScan、@Configuration和
+* **@SpringBootApplication**：包含了@ComponentScan、@Configuration和
 
-* **\@EnableAutoConfiguration** 注解。其中@ComponentScan让spring Boot扫描到Configuration类并把它加入到程序上下文。
+* **@EnableAutoConfiguration** 注解。其中@ComponentScan让spring Boot扫描到Configuration类并把它加入到程序上下文。
 
-* **\@Configuration** 等同于spring的XML配置文件；使用Java代码可以检查类型安全。
+* **@Configuration** 等同于spring的XML配置文件；使用Java代码可以检查类型安全。
 
-* **\@EnableAutoConfiguration** 自动配置。@ComponentScan组件扫描，可自动发现和装配一些Bean。
+* **@EnableAutoConfiguration** 自动配置。@ComponentScan组件扫描，可自动发现和装配一些Bean。
 
-* **\@Component** 可配合CommandLineRunner使用，在程序启动后执行一些基础任务。
+* **@Component** 可配合CommandLineRunner使用，在程序启动后执行一些基础任务。
 
-* **\@RestController** 注解是@Controller和@ResponseBody的合集,表示这是个控制器bean,并且是将函数的返回值直 接填入HTTP响应体中,是REST风格的控制器。
+* **@RestController** 注解是@Controller和@ResponseBody的合集,表示这是个控制器bean,并且是将函数的返回值直 接填入HTTP响应体中,是REST风格的控制器。
 
-* **\@Autowired** 自动导入。@PathVariable获取参数。
+* **@Autowired** 自动导入。@PathVariable获取参数。
 
-* **\@ResponseBody**：表示该方法的返回结果直接写入HTTP response body中，一般在异步获取数据时使用，用于构建RESTful的api。
+* **@ResponseBody**：表示该方法的返回结果直接写入HTTP response body中，一般在异步获取数据时使用，用于构建RESTful的api。
 *  **@Controller**：用于定义控制器类，在spring 项目中由控制器负责将用户发来的URL请求转发到对应的服务接口（service层），一般这个注解在类中，通常方法需要配合注解@RequestMapping。
 * **@RestController**：用于标注控制层组件(如struts中的action)，@ResponseBody和@Controller的合集。
 
 具体可考 https://zhuanlan.zhihu.com/p/88177443
 
 
-# Spel 注入
+# 二、 Spel 注入
 
-## 基本用法
+## ① 基本用法
 
 ```
 引用其他对象:#{car}
@@ -98,7 +98,7 @@ Expression
     }
 ```
 
-## 注入
+## ② 注入
 
 示例代码
 ```java
@@ -112,7 +112,7 @@ Expression
     }
 ```
 ![Y6GMJH.png](https://s1.ax1x.com/2020/05/16/Y6GMJH.png)
-### 常规注入
+### (1)常规注入
 
 **执行命令**
 ```java
@@ -142,7 +142,7 @@ new java.io.FileOutputStream(new java.io.File("filepath")).write("Diego".getByte
 ![Y6J7gs.png](https://s1.ax1x.com/2020/05/16/Y6J7gs.png)
 虽然报错了，但是文件正常写入
 
-### 利用java 反射机制
+### (2)利用java 反射机制
 
 在反射⾥极为重要的⽅法：
 * **获取类的⽅法： forName**
@@ -213,7 +213,7 @@ T( 被过滤
 
 
 
-# 参考
+# 三、 参考
 
 [SpEL表达式总结](https://www.jianshu.com/p/e0b50053b5d3)
 
@@ -222,5 +222,3 @@ T( 被过滤
 [知识星球](https://govuln.com/)
 
 [JAVA表达式注入漏洞](https://www.jianshu.com/p/e3c77c053359)
-
-[]()
