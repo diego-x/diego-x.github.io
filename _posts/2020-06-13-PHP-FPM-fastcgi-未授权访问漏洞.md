@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      PHP-FPM-Fastcgi-未授权访问漏洞
+title:      PHP-FPM Fastcgi 未授权访问漏洞
 subtitle:   。。
 date:       2020-06-13
 author:     BY Diego
@@ -11,7 +11,7 @@ tags:
     - PHP
 ---
 
-# PHP-FPM 两种模式
+# 一、PHP-FPM 两种模式
 
 **php-fpm 有两种模式，一种是基于tcp 另一种是基于unix套接字，tcp模式会启动9000端口 而unix套接字模式是基于fpm.sock文件**
 
@@ -40,11 +40,11 @@ nginx 配置文件
 
 ![tvqzqS.png](https://s1.ax1x.com/2020/06/13/tvqzqS.png)
 
-# 攻击
+# 二、攻击
 
 具体原理参考其他文章，个人简单记录攻击方法
 
-## Fastcgi暴露在外网
+## ① Fastcgi暴露在外网
 
 **tcp模式下的9000端口暴露外网**
 
@@ -55,7 +55,7 @@ nginx 配置文件
 ![tjcPvq.png](https://s1.ax1x.com/2020/06/13/tjcPvq.png)
 
 
-## Fastcgi在内网
+## ② Fastcgi在内网
 
 **tcp模式下的9000端口在内网**
 
@@ -85,7 +85,7 @@ a = [ data[x:x+2] for x in range(0,len(data),2) ]
 ![tjW3SH.png](https://s1.ax1x.com/2020/06/13/tjW3SH.png)
 
 
-# unix套接字攻击
+## ③ unix套接字攻击
 
 使用的是unix套接字，因此不会开放9000端口，但同样需要存在php文件
 
@@ -104,3 +104,11 @@ var_dump(fread($sock, 4096));
 也可跟ssrf相同方法 获得原始数据直接转base64
 
 ![tvXBKP.png](https://s1.ax1x.com/2020/06/13/tvXBKP.png)
+
+# 三、参考
+
+[PHP 连接方式&攻击PHP-FPM&*CTF echohub WP](https://evoa.me/index.php/archives/52/#toc-%E6%94%BB%E5%87%BB%E5%A5%97%E6%8E%A5%E5%AD%97)
+
+[浅析php-fpm的攻击方式](https://xz.aliyun.com/t/5598#toc-8)
+
+[Fastcgi协议分析 && PHP-FPM未授权访问漏洞 && Exp编写](https://www.leavesongs.com/PENETRATION/fastcgi-and-php-fpm.html)
