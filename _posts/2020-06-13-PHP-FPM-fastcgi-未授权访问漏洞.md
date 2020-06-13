@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      2020-06-13-PHP-FPM-Fastcgi-未授权访问漏洞
+title:      PHP-FPM-Fastcgi-未授权访问漏洞
 subtitle:   。。
 date:       2020-06-13
 author:     BY Diego
