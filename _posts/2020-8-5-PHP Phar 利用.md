@@ -261,7 +261,7 @@ url 存在f参数，
 
 
 
-```php+HTML
+```php
 <?php
 error_reporting(0);
 
@@ -341,7 +341,7 @@ if($f !== 'fail')
 
 
 
-```php+HTML
+```php
 <?php  
 if(isset($_POST['submit']) && !empty($_FILES['image']['tmp_name']))
 {	
@@ -390,7 +390,7 @@ if(isset($_POST['submit']) && !empty($_FILES['image']['tmp_name']))
 
 
 
-```php+HTML
+```php
 <?php  
 @$imageid = $_GET['imageid'];
 if(empty($imageid))
