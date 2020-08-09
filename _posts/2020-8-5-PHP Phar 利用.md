@@ -243,13 +243,12 @@ $phar->setDefaultStub();
 
 扫一下后台
 
-![image](https://cdn.nlark.com/yuque/0/2019/png/239570/1560660577461-c407a8f1-aa64-4599-bdfa-b2fb39b1be2d.png)
 
-
+![a4gM5D.png](https://s1.ax1x.com/2020/08/08/a4gM5D.png)
 
 url 存在f参数，
 
-![image](https://cdn.nlark.com/yuque/0/2019/png/239570/1560660576986-ca5bb69c-d283-4e34-a6f8-b08ea13c9270.png)
+![a4glPe.png](https://s1.ax1x.com/2020/08/08/a4glPe.png)
 
 
 

