@@ -163,6 +163,18 @@ request.__doc__[1]
 "sysxem"|replace('x','t')
 ```
 
+利用引号
+
+```python
+'sy''stem'
+```
+
+利用`__add__`方法
+
+```python
+'sy'.__add__('stem')
+```
+
 用其他可控变量代替
 
 ## ② 中括号被过滤
