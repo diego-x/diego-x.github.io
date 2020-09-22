@@ -6,6 +6,9 @@ date:       2020-9-22
 author:     BY Diego
 header-img: img/wenzhang/Thymeleaf.jpg
 catalog: true
+tags:
+    - Java
+	- 命令注入
 ---
 
 # Java Thymeleaf 模板注入分析
