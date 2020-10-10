@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Java Thymeleaf 模板注入分析
+title:      Java-Thymeleaf-模板注入分析
 subtitle:   简单分析
 date:       2020-9-22
 author:     BY Diego
