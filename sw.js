@@ -12,7 +12,8 @@ const HOSTNAME_WHITELIST = [
   self.location.hostname,
   "huangxuan.me",
   "yanshuo.io",
-  "cdnjs.cloudflare.com"
+  "cdnjs.cloudflare.com",
+  "182.92.64.179"
 ]
 
 
