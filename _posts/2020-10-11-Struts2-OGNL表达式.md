@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Struts2-ONGL-表达式
+title:      Struts2 ONGL 表达式
 subtitle:   开始接触struts2框架、继续学习java的表达式
 date:       2020-10-11
 author:     BY Diego
