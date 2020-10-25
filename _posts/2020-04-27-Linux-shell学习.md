@@ -4,7 +4,7 @@ title:      Linux shell学习
 subtitle:    shell学习 and 几个小发现
 date:       2020-04-27
 author:     BY Diego
-header-img: img/wenzhang/post-bg-linux-shell.jpg
+header-img: /img/wenzhang/post-bg-linux-shell.jpg
 catalog: true
 tags:
     - Linux

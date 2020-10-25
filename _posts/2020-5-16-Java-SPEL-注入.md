@@ -4,7 +4,7 @@ title:      Java-Spel 注入
 subtitle:   Spring表达式语言（简称SpEl）是一个支持查询和操作运行时对象导航图功能的强大的表达式语言. 它的语法类似于传统EL，但提供额外的功能，最出色的就是函数调用和简单字符串的模板函数。
 date:       2020-05-16
 author:     BY Diego
-header-img: img/wenzhang/post-bg-java-spel.jpg
+header-img: /img/wenzhang/post-bg-格式化.jpgimg/wenzhang/post-bg-java-spel.jpg
 catalog: true
 tags:
     - Java

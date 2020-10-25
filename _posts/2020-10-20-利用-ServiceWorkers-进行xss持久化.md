@@ -4,7 +4,7 @@ title:      利用 ServiceWorkers 进行xss持久化
 subtitle:   xss 持久化
 date:       2020-10-20
 author:     BY Diego
-header-img: img/wenzhang/post-ServiceWorkers-xss.jpg
+header-img: /img/wenzhang/post-bg-格式化.jpgimg/wenzhang/post-ServiceWorkers-xss.jpg
 catalog: true
 tags:
     - XSS

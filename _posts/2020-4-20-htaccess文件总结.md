@@ -4,7 +4,7 @@ title:      htaccess-文件总结
 subtitle:   服务器常见配置.htaccess
 date:       2020-04-20
 author:     BY Diego
-header-img: img/wenzhang/post-bg-htaccess.jpg
+header-img: /img/wenzhang/post-bg-htaccess.jpg
 catalog: true
 tags:
     - apache
