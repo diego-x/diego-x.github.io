@@ -92,7 +92,7 @@ if($_GET['callback']){
 
 会自动调用 `test.php?callback=test&_=1603111725643`
 
-[![0zmslq.md.png](https://s1.ax1x.com/2020/10/19/0zmslq.md.png)](https://imgchr.com/i/0zmslq)
+![](https://blog-1300884845.cos.ap-shanghai.myqcloud.com/wenzhang/0zmslq.md.png)
 
 
 
@@ -214,7 +214,7 @@ file_put_contents("1.txt", date("Y-m-d H:i:s")."\n",FILE_APPEND);
 
 只要请求存在的文件 都会自动请求XX.php
 
-[![BSisJ0.png](https://s1.ax1x.com/2020/10/20/BSisJ0.png)](https://imgchr.com/i/BSisJ0)
+![](https://blog-1300884845.cos.ap-shanghai.myqcloud.com/wenzhang/BSisJ0.png)
 
 
 
@@ -222,7 +222,7 @@ file_put_contents("1.txt", date("Y-m-d H:i:s")."\n",FILE_APPEND);
 
 
 
-[![BSFPl8.png](https://s1.ax1x.com/2020/10/20/BSFPl8.png)](https://imgchr.com/i/BSFPl8)
+![](https://blog-1300884845.cos.ap-shanghai.myqcloud.com/wenzhang/BSFPl8.png)](ht
 
 
 
@@ -268,21 +268,19 @@ onfetch=function(e){
 
 效果·如下·
 
-[![BSZTfA.md.png](https://s1.ax1x.com/2020/10/20/BSZTfA.md.png)](https://imgchr.com/i/BSZTfA)
+![](https://blog-1300884845.cos.ap-shanghai.myqcloud.com/wenzhang/BSZTfA.md.png)
 
 
 
 即使不存在的页面也会返回定义的页面， 因此就达到了xss 反射型变为 存储型
 
-[![BSeSYj.md.png](https://s1.ax1x.com/2020/10/20/BSeSYj.md.png)](https://imgchr.com/i/BSeSYj)
+![](https://blog-1300884845.cos.ap-shanghai.myqcloud.com/wenzhang/BSeSYj.md.png)
 
 
 
 XX.php 同时被访问到
 
-[![BSeDnf.md.png](https://s1.ax1x.com/2020/10/20/BSeDnf.md.png)](https://imgchr.com/i/BSeDnf)
-
-
+![](https://blog-1300884845.cos.ap-shanghai.myqcloud.com/wenzhang/BSeDnf.md.png)
 
 将alert 改成 获取cookie的代码
 
@@ -298,9 +296,7 @@ navigator.serviceWorker.register('/XX.php?callback=onfetch%3Dfunction(e)%7Be.res
 
 
 
-[![BSK7s1.png](https://s1.ax1x.com/2020/10/20/BSK7s1.png)](https://imgchr.com/i/BSK7s1)
-
-最理想的情况下是需要在受害者感觉不到的情况下获取信息
+![](https://blog-1300884845.cos.ap-shanghai.myqcloud.com/wenzhang/BSK7s1.png)最理想的情况下是需要在受害者感觉不到的情况下获取信息
 
 
 
@@ -310,7 +306,7 @@ navigator.serviceWorker.register('/XX.php?callback=onfetch%3Dfunction(e)%7Be.res
 
 引用 `https://speakerdeck.com/masatokinugawa/pwa-study-sw?slide=14` 图
 
-[![BSmd54.md.png](https://s1.ax1x.com/2020/10/20/BSmd54.md.png)](https://imgchr.com/i/BSmd54)
+![](https://blog-1300884845.cos.ap-shanghai.myqcloud.com/wenzhang/BSmd54.md.png)
 
 
 
