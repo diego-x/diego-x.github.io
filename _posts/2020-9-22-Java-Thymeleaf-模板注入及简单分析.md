@@ -4,7 +4,7 @@ title:      Java-Thymeleaf-模板注入分析
 subtitle:   简单分析
 date:       2020-9-22
 author:     BY Diego
-header-img: /img/wenzhang/Thymeleaf.jpg
+header-img: https://blog-1300884845.cos.ap-shanghai.myqcloud.com/background/wenzhang/Thymeleaf.jpg
 catalog: true
 tags:
     - Java

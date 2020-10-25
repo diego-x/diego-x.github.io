@@ -4,7 +4,7 @@ title:      PHP-FPM Fastcgi 未授权访问漏洞
 subtitle:   简单记录一下几种攻击方法
 date:       2020-06-13
 author:     BY Diego
-header-img: /img/wenzhang/PHP-FPM.jpg
+header-img: https://blog-1300884845.cos.ap-shanghai.myqcloud.com/background/PHP-FPM.jpg
 catalog: true
 tags:
     - 命令注入

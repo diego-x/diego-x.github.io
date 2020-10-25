@@ -4,7 +4,7 @@ title:      PHP Phar 利用
 subtitle:   很早之前就有接触一直没进行总结，趁机总结一下
 date:       2020-08-06
 author:     BY Diego
-header-img: /img/wenzhang/php-phar.jpg
+header-img: https://blog-1300884845.cos.ap-shanghai.myqcloud.com/background/php-phar.jpg
 catalog: true
 tags:
     - 反序列化

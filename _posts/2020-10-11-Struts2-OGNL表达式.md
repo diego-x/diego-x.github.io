@@ -4,7 +4,7 @@ title:      Struts2 ONGL 表达式
 subtitle:   开始接触struts2框架、继续学习java的表达式
 date:       2020-10-11
 author:     BY Diego
-header-img: /img/wenzhang/post-bg-java-struts-ognl.jpg
+header-img: https://blog-1300884845.cos.ap-shanghai.myqcloud.com/background/post-bg-java-struts-ognl.jpg
 catalog: true
 tags:
     - Java

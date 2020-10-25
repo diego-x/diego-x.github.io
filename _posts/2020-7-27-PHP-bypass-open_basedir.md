@@ -4,7 +4,7 @@ title:      PHP bypass open_basedir
 subtitle:   简单记录绕过的几种方法
 date:       2020-07-28
 author:     BY Diego
-header-img: /img/wenzhang/post-php-open_basedir.jpg
+header-img: https://blog-1300884845.cos.ap-shanghai.myqcloud.com/background/post-php-open_basedir.jpg
 catalog: true
 tags:
     - PHP

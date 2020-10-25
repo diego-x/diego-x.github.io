@@ -4,7 +4,7 @@ title:      Thinkphp5.1.x 反序列化分析
 subtitle:   继续分析thinkphp的漏洞，主要记录寻找链的方法
 date:       2020-08-05
 author:     BY Diego
-header-img: /img/wenzhang/thinkphp50137-反序列化.jpg
+header-img: https://blog-1300884845.cos.ap-shanghai.myqcloud.com/background/thinkphp50137-反序列化.jpg
 catalog: true
 tags:
     - 反序列化

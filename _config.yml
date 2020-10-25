@@ -1,7 +1,7 @@
 # Site settings
 title: BY Blog
 SEOTitle: Diego | BY Blog
-header-img: http://182.92.64.179/post-bg-desk.jpg
+header-img: https://blog-1300884845.cos.ap-shanghai.myqcloud.com/post-bg-desk.jpg
 email: 
 description: "Every failure is leading towards success."
 keyword: "BY, BY Blog, Diego, iOS, Apple, iPhone"
@@ -12,7 +12,7 @@ github_repo: "https://github.com/diego-x/diego-x.github.io.git" # you code repos
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "学到很多东西的诀窍，就是一下子不要学很多。"
-sidebar-avatar: /img/about-BY-gentle.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+#sidebar-avatar: /img/about-BY-gentle.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
