@@ -4,7 +4,7 @@ title:      Meterpreter-基础命令
 subtitle:
 date:       2020-5-9
 author:     BY Diego
-header-img: /img/wenzhang/post-bg-格式化.jpgimg/wenzhang/post-bg-Meterpreter.jpg
+header-img: /img/wenzhang/post-bg-Meterpreter.jpg
 catalog: true
 tags:
     - 工具

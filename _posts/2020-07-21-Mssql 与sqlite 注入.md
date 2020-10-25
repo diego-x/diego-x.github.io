@@ -4,7 +4,7 @@ title:      Mssql 与 Sqlite 注入
 subtitle:   先简单记录一下 注入方式，以后慢慢补充
 date:       2020-07-23
 author:     BY Diego
-header-img: /img/wenzhang/post-bg-格式化.jpgimg/wenzhang/post-bg-sql注入.jpg
+header-img: /img/wenzhang/post-bg-sql注入.jpg
 catalog: true
 tags:
     - 数据库
