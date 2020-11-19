@@ -4,7 +4,7 @@ title:      Flask ssti
 subtitle:   总结一下ssti常见payload 和 绕过方式 更新于 8.8
 date:       2020-05-20
 author:     BY Diego
-header-img: img/wenzhang/post-bg-flask-ssti.jpg
+header-img: https://blog-1300884845.cos.ap-shanghai.myqcloud.com/background/post-bg-flask-ssti.jpg
 catalog: true
 tags:
     - Python
